@@ -5,6 +5,7 @@ import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import Portfolio from "./Pages/Portfolio/Portfolio";
 import Purchase from "./Pages/Purchase/Purchase";
+import Register from "./Pages/Register/Register";
 import Footer from "./Shared/Footer";
 import Navbar from "./Shared/Navbar";
 
@@ -19,6 +20,7 @@ function App() {
          <Route path="/blogs" element={<Blog></Blog>}></Route>
          <Route path="/portfolio" element={<Portfolio></Portfolio>}></Route>
          <Route path="/login" element={<Login></Login>}></Route>
+         <Route path="/register" element={<Register></Register>}></Route>
          {/* <Route path="" element={}></Route> */}
       </Routes>
       <Footer></Footer>

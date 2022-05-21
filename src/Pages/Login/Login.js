@@ -32,9 +32,9 @@ const Login = () => {
               </a>
             </label>
             <label class="label">
-              <a href="#" class="label-text-alt link link-hover">
-                Don't have an account? <Link to="/register">Sign Up</Link>
-              </a>
+              <span class="label-text-alt  text-base">
+                Don't have an account? <Link className="font-bold text-error" to="/register">Sign Up</Link>
+              </span>
             </label>
           </div>
           <div class="form-control mt-6">
