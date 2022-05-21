@@ -1,0 +1,29 @@
+[
+    {
+        "_id": "1",
+        "name":"Monitor",
+        "img" : "https://i.ibb.co/N7hGF1J/monitor.png",
+        "short_desc": "We brought a significant numbers of monitor. If you want to change your monitor or repair pls visit us.",
+        "min_order_quantity": "100",
+        "available": "3000",
+        "price" : "30,333"
+    },
+    {
+        "_id": "2",
+        "name":"Monitor",
+        "img" : "https://i.ibb.co/N7hGF1J/monitor.png",
+        "short_desc": "We brought a significant numbers of monitor. If you want to change your monitor or repair pls visit us.",
+        "min_order_quantity": "100",
+        "available": "3000",
+        "price" : "30,333"
+    },
+    {
+        "_id": "3",
+        "name":"Monitor",
+        "img" : "https://i.ibb.co/N7hGF1J/monitor.png",
+        "short_desc": "We brought a significant numbers of monitor. If you want to change your monitor or repair pls visit us.",
+        "min_order_quantity": "100",
+        "available": "3000",
+        "price" : "30,333"
+    }
+]
