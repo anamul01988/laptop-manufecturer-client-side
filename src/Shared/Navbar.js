@@ -79,11 +79,27 @@ const Navbar = () => {
           <li>
             <NavLink to="/portfolio">Portfolio</NavLink>
           </li>
+          {/* {
+            user && (
+              <li>
+            <NavLink to="/portfolio"><h3>{user.displayName}</h3></NavLink>
+            </li>
+            )
+          } */}
         </ul>
       </div>
     
       <div class="navbar-end">
         <ul class="menu menu-horizontal p-0">
+          <li>
+          {
+            user && (
+              <li>
+            <NavLink to="/portfolio"><h3>{user.displayName}</h3></NavLink>
+            </li>
+            )
+          }
+          </li>
         <li>
             {
               user ? (

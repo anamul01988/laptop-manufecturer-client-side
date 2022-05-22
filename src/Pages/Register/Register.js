@@ -4,6 +4,7 @@ import auth from "../../firebase.init";
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import Loading from "../../Shared/Loading";
 
 
 const Register = () => {
@@ -16,19 +17,32 @@ const Register = () => {
   } = useForm();
 
   const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
-
+  const [updateProfile, updating, updatingError] = useUpdateProfile(auth);
   const navigate = useNavigate();
+  let registerErrorMessage;
+
+  if( loading || gloading || updating){
+    return <Loading/>
+  }
+
+  if(error || gerror || updatingError){
+    registerErrorMessage = <p className="text-red-500"><small>{error?.message || gerror?.message || updatingError?.message}</small></p>
+  }
+ 
   if (user || guser) {
     console.log(user);
     navigate('/')
   }
 
   const onSubmit = async(data) => {
+    console.log(data)
     await createUserWithEmailAndPassword(
       // data.userName,
       data.email,
       data.password
     )
+    await updateProfile({displayName: data.userName});
+    console.log('updated profile');
   };
 
   return (
@@ -144,6 +158,9 @@ const Register = () => {
                 Accept terms & condition
               </label>
             </div>
+
+            {registerErrorMessage}
+
             <div class="form-control mt-6">
               {/* <button value="submit" class="btn btn-primary">Register</button> */}
               <input
