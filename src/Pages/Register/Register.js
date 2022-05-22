@@ -9,7 +9,7 @@ import Loading from "../../Shared/Loading";
 
 const Register = () => {
   // const [agree, setAgree] = useState(false);
-  const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth, {sendEmailVerification:true});
   const {
     register,
     formState: { errors },

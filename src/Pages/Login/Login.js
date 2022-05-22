@@ -1,7 +1,8 @@
 import React, { useRef } from "react";
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import Loading from "../../Shared/Loading";
 // import img1 from '../../assets/banner.jpg'
@@ -18,19 +19,21 @@ const Login = () => {
     error,
   ] = useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
+  const [sendPasswordResetEmail, sending1, error1] =
+  useSendPasswordResetEmail(auth);
 
   if(user||guser){
     // console.log(user, guser)
     navigate(from, { replace: true });
   }
-  if (loading || gloading ) {
+  if (loading || gloading ||sending1 ) {
     return <Loading />;
   }
 let loginErrorMessage;
-  if (error || gerror) {
+  if (error || gerror ||error1) {
     loginErrorMessage = (
       <p className="text-red-500">
-        <small>{error?.message || gerror?.message }</small>
+        <small>{error?.message || gerror?.message ||error1.message }</small>
       </p>
     );
   }
@@ -45,8 +48,15 @@ let loginErrorMessage;
     // console.log("clicked");
     signInWithGoogle()
   }
-  const resetPassword = () =>{
+  const resetPassword = async() =>{
     console.log('reset clicked');
+    const email = emailRef.current.value;
+    if (email) {
+      await sendPasswordResetEmail(email);
+      toast("Please visit your email :)");
+    } else {
+      toast("Please enter your email address...");
+    }
   }
   return (
     <div class="hero min-h-screen bg-base-200 my-12">
@@ -75,13 +85,13 @@ let loginErrorMessage;
               class="input input-bordered"
             />
             <label class="label">
-              <button class="label-text-alt link link-hover">
-                Forgot password? <Link to="" onClick={resetPassword}>Reset Password</Link>
-              </button>
+              <span class="label-text-alt text-base ">
+                Forgot password? <Link class=" font-bold text-dark link:hover" to="" onClick={resetPassword}>Reset Password</Link>
+              </span>
             </label>
             <label class="label">
-              <span class="label-text-alt  text-base">
-                Don't have an account? <Link className="font-bold text-error" to="/register">Sign Up</Link>
+              <span class="label-text-alt text-base">
+                Don't have an account? <Link className="font-bold text-error link:hover " to="/register">Sign Up</Link>
               </span>
             </label>
           </div>
