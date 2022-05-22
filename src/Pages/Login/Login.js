@@ -1,7 +1,17 @@
 import React from "react";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import auth from "../../firebase.init";
 // import img1 from '../../assets/banner.jpg'
 const Login = () => {
+  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  if(user){
+    console.log(user)
+  }
+  const socialLoginIn = () =>{
+    // console.log("clicked");
+    signInWithGoogle()
+  }
   return (
     <div class="hero min-h-screen bg-base-200 my-12">
       <div class="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100 ">
@@ -41,7 +51,7 @@ const Login = () => {
             <button class="btn btn-primary">Login</button>
           </div>
           <div class="divider">OR</div>
-          <button className='btn btn-glass hover:btn-accent'>
+          <button onClick={socialLoginIn} className='btn btn-glass hover:btn-accent'>
             Continue with google
           </button>
         </div>
