@@ -1,16 +1,52 @@
-import React from "react";
+import React, { useRef } from "react";
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import Loading from "../../Shared/Loading";
 // import img1 from '../../assets/banner.jpg'
 const Login = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-  if(user){
-    console.log(user)
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+  const [
+    signInWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useSignInWithEmailAndPassword(auth);
+  const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
+
+  if(user||guser){
+    // console.log(user, guser)
+    navigate(from, { replace: true });
+  }
+  if (loading || gloading ) {
+    return <Loading />;
+  }
+let loginErrorMessage;
+  if (error || gerror) {
+    loginErrorMessage = (
+      <p className="text-red-500">
+        <small>{error?.message || gerror?.message }</small>
+      </p>
+    );
+  }
+  
+  const loginSubmit=(e)=>{
+     e.preventDefault();
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    signInWithEmailAndPassword(email, password);
   }
   const socialLoginIn = () =>{
     // console.log("clicked");
     signInWithGoogle()
+  }
+  const resetPassword = () =>{
+    console.log('reset clicked');
   }
   return (
     <div class="hero min-h-screen bg-base-200 my-12">
@@ -22,6 +58,7 @@ const Login = () => {
               <span class="label-text">Email</span>
             </label>
             <input
+             ref={emailRef}
               type="text"
               placeholder="email"
               class="input input-bordered"
@@ -32,14 +69,15 @@ const Login = () => {
               <span class="label-text">Password</span>
             </label>
             <input
+              ref={passwordRef}
               type="text"
               placeholder="password"
               class="input input-bordered"
             />
             <label class="label">
-              <a href="#" class="label-text-alt link link-hover">
-                Forgot password?
-              </a>
+              <button class="label-text-alt link link-hover">
+                Forgot password? <Link to="" onClick={resetPassword}>Reset Password</Link>
+              </button>
             </label>
             <label class="label">
               <span class="label-text-alt  text-base">
@@ -47,15 +85,15 @@ const Login = () => {
               </span>
             </label>
           </div>
+          {loginErrorMessage}
           <div class="form-control mt-6">
-            <button class="btn btn-primary">Login</button>
+            <button onClick={loginSubmit} class="btn btn-primary">Login</button>
           </div>
           <div class="divider">OR</div>
           <button onClick={socialLoginIn} className='btn btn-glass hover:btn-accent'>
             Continue with google
           </button>
         </div>
-        {/* <div class="divider">OR</div> */}
       </div>
     </div>
   );
