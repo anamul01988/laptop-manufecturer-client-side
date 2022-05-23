@@ -15,9 +15,9 @@ const AllUsers = () => {
         return <Loading></Loading>
     }
     return (
-        <div>
-            <h3>users</h3>
-            <h2 className="text-2xl">All Users: {users.length}</h2>
+        <div class="mt-11">
+           
+            {/* <h2 className="text-2xl">All Users: {users.length}</h2> */}
             <div class="overflow-x-auto">
                 <table class="table w-full">
                     <thead>
@@ -30,8 +30,9 @@ const AllUsers = () => {
                     </thead>
                     <tbody>
                        {
-                           users.map(user=><Users
+                           users.map((user, index)=><Users
                            key={user._id}
+                           index={index}
                            user={user}
                            refetch={refetch}
                            ></Users>)
@@ -39,6 +40,9 @@ const AllUsers = () => {
                     </tbody>
                 </table>
             </div>
+            {/* <div className="box mt-11 text-center">
+                <button className=" btn btn-glass disabled text-2xl">All Users: {users.length}</button>
+            </div> */}
         </div>
     );
 };
