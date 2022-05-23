@@ -9,6 +9,7 @@ const Navbar = () => {
   // console.log(user.user.email)
   const logout = () => {
     signOut(auth);
+    localStorage.removeItem('accessToken')
   };
   return (
     <div class="navbar bg-base-100">

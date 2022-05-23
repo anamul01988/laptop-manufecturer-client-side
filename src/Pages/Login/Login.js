@@ -1,9 +1,10 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
+import useToken from "../../Hooks/useToken";
 import Loading from "../../Shared/Loading";
 // import img1 from '../../assets/banner.jpg'
 const Login = () => {
@@ -18,14 +19,22 @@ const Login = () => {
     loading,
     error,
   ] = useSignInWithEmailAndPassword(auth);
+  
   const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
   const [sendPasswordResetEmail, sending1, error1] =
   useSendPasswordResetEmail(auth);
 
-  if(user||guser){
-    // console.log(user, guser)
-    navigate(from, { replace: true });
-  }
+  const [token] = useToken(user || guser) ;
+  
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, from, navigate])
+  // if(user||guser){
+  //   navigate(from, { replace: true });
+  // }
+
   if (loading || gloading ||sending1 ) {
     return <Loading />;
   }

@@ -5,6 +5,7 @@ import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfil
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Loading from "../../Shared/Loading";
+import useToken from "../../Hooks/useToken";
 
 
 const Register = () => {
@@ -18,6 +19,8 @@ const Register = () => {
 
   const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating, updatingError] = useUpdateProfile(auth);
+  
+  const [token] = useToken(user || guser) ;
   const navigate = useNavigate();
   let registerErrorMessage;
 
@@ -28,9 +31,12 @@ const Register = () => {
   if(error || gerror || updatingError){
     registerErrorMessage = <p className="text-red-500"><small>{error?.message || gerror?.message || updatingError?.message}</small></p>
   }
- 
-  if (user || guser) {
-    console.log(user);
+  // const [token] = useToken(user || guser) ;
+  // if (user || guser) {
+  //   console.log(user);
+  //   navigate('/')
+  // }
+  if (token) {
     navigate('/')
   }
 

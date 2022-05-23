@@ -9,9 +9,7 @@ const Purchase = () => {
   const [parts] = usePartsDetail(partsId);
   const { name, _id, price, min_order_quantity } = parts;
   const [count, setCount] = useState(null);
-  // console.log(parts);
-  const [user, loading, error] = useAuthState(auth);
-  // console.log(user)
+  const [user] = useAuthState(auth);
   const increament = (num) => {
     console.log(num);
     setCount(num + 1);
@@ -19,11 +17,7 @@ const Purchase = () => {
   const handleOrder = (event) => {
     event.preventDefault();
     const phone = event.target.phone.value;
-    // console.log(phone);
     const address = event.target.address.value;
-
-    console.log(name, _id, price, address, phone);
-
     const order = {
       orderId: _id,
       order: name,
@@ -33,7 +27,7 @@ const Purchase = () => {
       address: event.target.address.value,
       phone: event.target.phone.value,
     };
-    console.log(order);
+
     fetch('http://localhost:5000/order',{
       method: 'POST',
       headers: {
@@ -43,7 +37,7 @@ const Purchase = () => {
     })
     .then(res=> res.json())
     .then(data => {
-      console.log(data);
+      // console.log(data);
       if(data.success){
         toast(`You order is sent.`)
       }
@@ -53,6 +47,7 @@ const Purchase = () => {
     })
   };
   return (
+   
     <div class="hero min-h-screen bg-base-200 py-12">
       <div class="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100 ">
         <div class="card-body">

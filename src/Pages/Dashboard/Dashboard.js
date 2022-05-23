@@ -6,14 +6,14 @@ const Dashboard = () => {
     <div class="drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col items-center justify-center">
-      <h2 className='text-3xl font-bold text-purple-500'>Welcome to your Dashboard</h2>
+      <h2 className='text-3xl font-bold text-primary'>Welcome to your Dashboard</h2>
         {/* <!-- Page content here --> */}
     
         <Outlet></Outlet>
       </div>
       <div class="drawer-side">
         <label for="my-drawer-2" class="drawer-overlay"></label>
-        <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
+        <ul class="menu p-4 overflow-y-auto w-48 bg-base-100 text-base-content">
           {/* <!-- Sidebar content here --> */}
           <li>
             <Link to="/dashboard">My Profile</Link>
