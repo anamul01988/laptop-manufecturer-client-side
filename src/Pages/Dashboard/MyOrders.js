@@ -1,15 +1,33 @@
+import { signOut } from "firebase/auth";
 import React, { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 const MyOrders = () => {
   const [orderList, setOrderList] = useState([]);
   console.log(orderList);
   const [user] = useAuthState(auth);
+  const navigate = useNavigate();
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/order?user=${user.email}`)
-        .then((res) => res.json())
-        .then((data) => setOrderList(data));
+      fetch(`http://localhost:5000/order?user=${user.email}`, {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`, //aita k send korteci headers theke
+        },
+      })
+        .then((res) => {
+          console.log('response', res);
+          if(res.status === 401 || res.status ===403){
+            signOut(auth);
+            localStorage.removeItem('accessToken');
+             navigate('/')
+          }
+          return res.json()
+        })
+        .then((data) => {
+          setOrderList(data);
+        });
     }
   }, [user]);
   return (
@@ -28,9 +46,9 @@ const MyOrders = () => {
             </tr>
           </thead>
           <tbody>
-            {orderList.map((order,key) => (
+            {orderList.map((order, key) => (
               <tr>
-                <th>{key+1}</th>
+                <th>{key + 1}</th>
                 <td>{order.userName}</td>
                 <td>{order.order}</td>
                 <td>{order.price}</td>
