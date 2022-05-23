@@ -12,6 +12,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Purchase from "./Pages/Purchase/Purchase";
 import PartsDetail from "./Pages/PartsDetails/PartsDetail";
+import MyProfile from "./Pages/Dashboard/MyProfile";
+import MyOrders from "./Pages/Dashboard/MyOrders";
+import AddReview from "./Pages/Dashboard/AddReview";
 
 
 function App() {
@@ -22,7 +25,11 @@ function App() {
          <Route path="/" element={<Home/>}></Route>
          {/* <Route path="/parts/:partsId" element={<PartsDetail/>}></Route> */}
          <Route path="/parts/:partsId" element={<ProtectedRoute><Purchase/></ProtectedRoute>}></Route>
-         <Route path="/dashboard" element={<Dashboard/>}></Route>
+         <Route path="/dashboard" element={<ProtectedRoute><Dashboard/></ProtectedRoute>}>
+           <Route index element={<MyProfile></MyProfile>}/>
+           <Route path="my_orders" element={<MyOrders></MyOrders>}/>
+           <Route path="add_review" element={<AddReview></AddReview>}/>
+         </Route>
          <Route path="/blogs" element={<Blog></Blog>}></Route>
          <Route path="/portfolio" element={<Portfolio></Portfolio>}></Route>
          <Route path="/login" element={<Login></Login>}></Route>
