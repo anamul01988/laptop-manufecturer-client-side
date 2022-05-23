@@ -16,6 +16,7 @@ import MyProfile from "./Pages/Dashboard/MyProfile";
 import MyOrders from "./Pages/Dashboard/MyOrders";
 import AddReview from "./Pages/Dashboard/AddReview";
 import AllUsers from "./Pages/Dashboard/AllUsers";
+import AdminProtection from "./Authentication/AdminProtection";
 
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
            <Route index element={<MyProfile></MyProfile>}/>
            <Route path="my_orders" element={<MyOrders></MyOrders>}/>
            <Route path="add_review" element={<AddReview></AddReview>}/>
-           <Route path="all_users" element={<AllUsers></AllUsers>}/>
+           <Route path="all_users" element={<AdminProtection><AllUsers></AllUsers></AdminProtection>}/>
          </Route>
          <Route path="/blogs" element={<Blog></Blog>}></Route>
          <Route path="/portfolio" element={<Portfolio></Portfolio>}></Route>
