@@ -1,45 +1,86 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
-import usePartsDetail from '../../Hooks/usePartsDetail';
+import usePartsDetail from "../../Hooks/usePartsDetail";
 const Purchase = () => {
-  const {partsId} = useParams();
+  const { partsId } = useParams();
   const [parts] = usePartsDetail(partsId);
-  const {name, min_order_quantity} = parts;
+  const { name, _id, price, min_order_quantity } = parts;
   const [count, setCount] = useState(null);
   // console.log(parts);
-    const [user, loading, error] = useAuthState(auth);
-    // console.log(user)
-    const increament=(num)=>{
-       console.log(num);
-       setCount(num+1)
-    }
-    return (
-        <div class="hero min-h-screen bg-base-200 py-12">
-        <div class="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100 ">
-          <div class="card-body">
-            <h2 className="text-primary text-center font-bold text-3xl">Reservation Form</h2>
-           <form onSubmit=" ">
-           <div class="form-control mt-6">
+  const [user, loading, error] = useAuthState(auth);
+  // console.log(user)
+  const increament = (num) => {
+    console.log(num);
+    setCount(num + 1);
+  };
+  const handleOrder = (event) => {
+    event.preventDefault();
+    const phone = event.target.phone.value;
+    // console.log(phone);
+    const address = event.target.address.value;
+
+    console.log(name, _id, price, address, phone);
+
+    const order = {
+      orderId: _id,
+      order: name,
+      price: price,
+      user: user.email,
+      userName: user.displayName,
+      address: event.target.address.value,
+      phone: event.target.phone.value,
+    };
+    console.log(order);
+    fetch('http://localhost:5000/order',{
+      method: 'POST',
+      headers: {
+        'content-type' : 'application/json'
+      },
+      body: JSON.stringify(order)
+    })
+    .then(res=> res.json())
+    .then(data => {
+      console.log(data);
+      if(data.success){
+        toast(`You order is sent.`)
+      }
+      else{
+        toast.error(`Already ordered`)
+      }
+    })
+  };
+  return (
+    <div class="hero min-h-screen bg-base-200 py-12">
+      <div class="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100 ">
+        <div class="card-body">
+          <h2 className="text-primary text-center font-bold text-3xl">
+            Reservation Form
+          </h2>
+          <form onSubmit={handleOrder}>
+            <div class="form-control mt-6">
               <input
                 type="text"
-                value={user.displayName}
+                value={user?.displayName || " "}
                 name="name"
                 placeholder="name"
                 required
                 readOnly
+                disabled
                 class="input input-bordered"
               />
             </div>
             <div class="form-control mt-6">
               <input
                 type="text"
-                value={user.email}
+                value={user?.email || " "}
                 name="email"
                 placeholder="Email"
                 required
                 readOnly
+                disabled
                 class="input input-bordered"
               />
             </div>
@@ -50,10 +91,11 @@ const Purchase = () => {
                 name="pd_name"
                 placeholder="Product Name"
                 required
+                disabled
                 class="input input-bordered"
               />
             </div>
-            <div class="form-control mt-6">  
+            <div class="form-control mt-6">
               <input
                 type="text"
                 name="address"
@@ -62,42 +104,50 @@ const Purchase = () => {
                 class="input input-bordered"
               />
             </div>
-            <div class="form-control mt-6">  
+            <div class="form-control mt-6">
               <input
-                type="text"
+                type="number"
                 name="phone"
                 placeholder="Phone"
                 required
                 class="input input-bordered"
               />
             </div>
-            <div class="form-control mt-6 flex">  
-            <div className="flex justify-center">
-            <button className='btn btn-square text-3xl '>+</button>
-              <input
-                type="text"
-                name="phone"
-                value={min_order_quantity}
-                placeholder="min-Quantity"
-                required
-                class="input input-bordered w-33"
-                readOnly
-              />
-                 <button onClick={()=>increament(min_order_quantity)} className='btn btn-square text-3xl'>-</button>
-            </div>
-            </div>
-           
+
             <div class="form-control mt-6">
-           
-              <input type="submit" value="Place Order" class="btn btn-primary"/>
-           
+              <input
+                type="submit"
+                value="Place Order"
+                class="btn btn-primary"
+              />
             </div>
-           </form>
+          </form>
+
           
-          </div>
+          <div class="form-control mt-6 flex">
+              <div className="flex justify-center">
+                <button className="btn btn-square text-3xl ">+</button>
+                <input
+                  type="text"
+                  name="phone"
+                  value={min_order_quantity}
+                  placeholder="min-Quantity"
+                  required
+                  class="input input-bordered w-33"
+                  readOnly
+                />
+                <button
+                  onClick={() => increament(min_order_quantity)}
+                  className="btn btn-square text-3xl"
+                >
+                  -
+                </button>
+              </div>
+            </div>
         </div>
       </div>
-    );
+    </div>
+  );
 };
 
 export default Purchase;
