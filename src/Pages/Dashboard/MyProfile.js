@@ -45,6 +45,7 @@ const MyProfile = () => {
      
       })
   };
+ 
   return (
     <div class="hero min-h-screen bg-base-200 py-12">
       <div class="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100 ">
