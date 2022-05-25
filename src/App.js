@@ -17,6 +17,9 @@ import MyOrders from "./Pages/Dashboard/MyOrders";
 import AddReview from "./Pages/Dashboard/AddReview";
 import AllUsers from "./Pages/Dashboard/AllUsers";
 import AdminProtection from "./Authentication/AdminProtection";
+import ManageAllProduct from "./Pages/Dashboard/ManageAllProduct";
+import AddProduct from "./Pages/Dashboard/AddProduct";
+import ManageProduct from "./Pages/Dashboard/ManageProduct";
 
 
 function App() {
@@ -32,6 +35,9 @@ function App() {
            <Route path="my_orders" element={<MyOrders></MyOrders>}/>
            <Route path="add_review" element={<AddReview></AddReview>}/>
            <Route path="all_users" element={<AdminProtection><AllUsers></AllUsers></AdminProtection>}/>
+           <Route path="manage_all_orders" element={<AdminProtection><ManageAllProduct></ManageAllProduct></AdminProtection>}/>
+           <Route path="add_product" element={<AdminProtection><AddProduct></AddProduct></AdminProtection>}/>
+           <Route path="manage_product" element={<AdminProtection><ManageProduct/></AdminProtection>}/>
          </Route>
          <Route path="/blogs" element={<Blog></Blog>}></Route>
          <Route path="/portfolio" element={<Portfolio></Portfolio>}></Route>

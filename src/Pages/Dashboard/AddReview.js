@@ -103,7 +103,7 @@ const AddReview = () => {
             <label className="label">
               {errors.ratings?.type === "required" && (
                 <span className="label-text-alt text-red-500">
-                  {errors.email.message}
+                  {errors.ratings.message}
                 </span>
               )}
             </label>
@@ -127,7 +127,7 @@ const AddReview = () => {
             <label className="label">
               {errors.description?.type === "required" && (
                 <span className="label-text-alt text-red-500">
-                  {errors.email.message}
+                  {errors.description.message}
                 </span>
               )}
             </label>
@@ -150,7 +150,7 @@ const AddReview = () => {
             <label className="label">
               {errors.name?.type === "required" && (
                 <span className="label-text-alt text-red-500">
-                  {errors.name.message}
+                  {errors.image.message}
                 </span>
               )}
             </label>
