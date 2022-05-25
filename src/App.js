@@ -20,6 +20,7 @@ import AdminProtection from "./Authentication/AdminProtection";
 import ManageAllProduct from "./Pages/Dashboard/ManageAllProduct";
 import AddProduct from "./Pages/Dashboard/AddProduct";
 import ManageProduct from "./Pages/Dashboard/ManageProduct";
+import Payment from "./Pages/Dashboard/Payment";
 
 
 function App() {
@@ -34,8 +35,10 @@ function App() {
            <Route index element={<MyProfile></MyProfile>}/>
            <Route path="my_orders" element={<MyOrders></MyOrders>}/>
            <Route path="add_review" element={<AddReview></AddReview>}/>
+           <Route path="payment/:id" element={<Payment></Payment>}/>
            <Route path="all_users" element={<AdminProtection><AllUsers></AllUsers></AdminProtection>}/>
            <Route path="manage_all_orders" element={<AdminProtection><ManageAllProduct></ManageAllProduct></AdminProtection>}/>
+         
            <Route path="add_product" element={<AdminProtection><AddProduct></AddProduct></AdminProtection>}/>
            <Route path="manage_product" element={<AdminProtection><ManageProduct/></AdminProtection>}/>
          </Route>

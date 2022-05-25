@@ -15,7 +15,7 @@ const AllUsers = () => {
         return <Loading></Loading>
     }
     return (
-        <div class="mt-11">
+        <div class="mt-4">
            
             {/* <h2 className="text-2xl">All Users: {users.length}</h2> */}
             <div class="overflow-x-auto">
@@ -30,7 +30,7 @@ const AllUsers = () => {
                     </thead>
                     <tbody>
                        {
-                           users.map((user, index)=><Users
+                          users.length &&  users.map((user, index)=><Users
                            key={user._id}
                            index={index}
                            user={user}
