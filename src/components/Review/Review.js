@@ -35,9 +35,9 @@ const Review = () => {
       .then((data) => setReview(data));
   }, []);
   return (
-    <div class="">
-      <div class="hero mb-14 bg-base-200 ">
-        <div class="hero-content text-center py-14">
+    <div class=" py-16 px-11 mb-11">
+      <div class="hero ">
+        <div class="hero-content text-center ">
           <div class="max-w-md">
             <h1 class="text-5xl font-bold tracking-wide"> Reviews</h1>
             {/* <h5 class="text-2xl tracking-wide">Awesome Reviews</h5> */}
@@ -53,7 +53,7 @@ const Review = () => {
           </div>
         </div>
       </div>
-      <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-7 mb-32">
+      <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-7 ">
         {review.length && review?.map((review) => (
           <ReviewDetail key={review._id} review={review}></ReviewDetail>
         ))}

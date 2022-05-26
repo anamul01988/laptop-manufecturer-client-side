@@ -12,8 +12,8 @@ const NewArrival = () => {
         .then((data) => setArrival(data));
     }, []);
   return (
-    <div class="my-6">
-      <div class="hero  bg-base-100">
+    <div class="my-6 bg-base-200 py-12 px-11">
+      <div class="hero ">
         <div class="hero-content text-center">
           <div class="max-w-md">
             <h1 class="text-5xl font-bold">New Arrival</h1>
@@ -25,7 +25,7 @@ const NewArrival = () => {
           </div>
         </div>
       </div>
-      <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-7 mb-32">
+      <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-7 pb-11 ">
       {
           arrival.map((arrival)=>   <div class="card bg-base-100 shadow-2xl">
           <figure class="px-10 pt-10 ">
