@@ -23,6 +23,7 @@ const CheckoutForm = ({ order }) => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         if (data?.clientSecret) {
           setClientSecret(data.clientSecret);
         }
@@ -113,9 +114,9 @@ const CheckoutForm = ({ order }) => {
           }}
         />
         <button
-          className="btn btn-success btn-sm mt-4"
+          className="btn btn-success hove:bg-primary btn-sm mt-4"
           type="submit"
-          disabled={!stripe || !clientSecret || success}
+          // disabled={!stripe || !clientSecret || success}
         >
           Pay
         </button>

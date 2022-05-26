@@ -2,6 +2,7 @@ import { signOut } from "firebase/auth";
 import React, { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 const ManageAllProduct = () => {
   const [orderList, setOrderList] = useState([]);
@@ -30,6 +31,26 @@ const ManageAllProduct = () => {
         });
     }
   }, [user]);
+
+  const userOrderDelete = (_id) =>{
+    const confirm = window.confirm("fdefdafa")
+   if(confirm){
+    fetch(`http://localhost:5000/userOrder/${_id}`,{
+      method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      toast("succeffully deleted")
+    })
+   }
+    // useEffect(()=>{
+
+    // },[])
+  }
   return (
     <div class="">
       <h3>My orders: {orderList.length}</h3>
@@ -56,13 +77,17 @@ const ManageAllProduct = () => {
                 <td>{order.address}</td>
                 <td>{order.phone}</td>
                 <td>
-                 {/* {(order.price) && <button className='btn btn-xs btn-success'>Pay</button>} */}
-                 {(order.price && !order.paid) && <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-xs btn-success'>Unpaid</button></Link>}
+                {/* {(order.paid === true) ? "Paid " : <Link to={`/dashboard/payment/${order._id}`}><button  className='btn btn-xs btn-success'>Cancel</button></Link>} */}
+                 {(order.price && !order.paid) && <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-xs btn-success'>Payment</button></Link>}
+               
                  {/* {(order.price && order.paid) && <span className='text-success'>paid</span>} */}
                  {(order.price && order.paid) && <div>
                   <span className='text-success'>Shipped</span>
                   <p>Transaction id: <span className='text-success'>{order.transactionId}</span></p>
                    </div>}
+                   {
+                     order.paid ? " ": <button onClick={()=>userOrderDelete(order._id)} class="btn btn-primary">Cancel</button>
+                   }
               </td>
               </tr>
             ))}

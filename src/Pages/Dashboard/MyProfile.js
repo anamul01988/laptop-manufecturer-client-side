@@ -23,7 +23,8 @@ const MyProfile = () => {
       phone: event.target.phone.value,
       linkedin: event.target.linkedin.value,
     };
-    //   console.log(profile);
+      // console.log(profile);
+
     // fetch("http://localhost:5000/profile", {
     //   method: "POST",
     //   headers: {
@@ -39,7 +40,8 @@ const MyProfile = () => {
     //       toast.error(`Already sent`);
     //     }
     //   });
-    fetch("http://localhost:5000/profile", {
+
+    fetch(`http://localhost:5000/profileUpdate/${user.email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -47,7 +49,10 @@ const MyProfile = () => {
       body: JSON.stringify(profile),
     })
       .then((res) => res.json())
-      .then(data => console.log(data))
+      .then(data => {
+        console.log(data)
+        event.target.reset();
+      })
       // .then((data) => {
       //   if (data.success) {
       //     toast(`You profile data is sent.`);

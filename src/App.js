@@ -29,7 +29,6 @@ function App() {
       <Navbar></Navbar>
       <Routes>
          <Route path="/" element={<Home/>}></Route>
-         {/* <Route path="/parts/:partsId" element={<PartsDetail/>}></Route> */}
          <Route path="/parts/:partsId" element={<ProtectedRoute><Purchase/></ProtectedRoute>}></Route>
          <Route path="/dashboard" element={<ProtectedRoute><Dashboard/></ProtectedRoute>}>
            <Route index element={<MyProfile></MyProfile>}/>

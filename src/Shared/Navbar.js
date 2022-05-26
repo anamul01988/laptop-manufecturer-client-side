@@ -38,9 +38,9 @@ const Navbar = () => {
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to="/purchase">Purchase</NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink to="/dashboard">Dashboard</NavLink>
             </li>
@@ -73,13 +73,13 @@ const Navbar = () => {
         </NavLink>
       </div>
       <div class="navbar-center hidden lg:flex">
-        <ul class="menu menu-horizontal p-0">
+        <ul class="menu menu-horizontal ms-auto p-0">
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to="/parts">Purchase</NavLink>
-          </li>
+          </li> */}
           {user && (
             <li>
               <NavLink to="/dashboard">Dashboard</NavLink>
