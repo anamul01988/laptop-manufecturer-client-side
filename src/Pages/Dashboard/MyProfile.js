@@ -25,7 +25,7 @@ const MyProfile = () => {
     };
       // console.log(profile);
 
-    // fetch("http://localhost:5000/profile", {
+    // fetch("https://guarded-chamber-19497.herokuapp.com/profile", {
     //   method: "POST",
     //   headers: {
     //     "content-type": "application/json",
@@ -41,7 +41,7 @@ const MyProfile = () => {
     //     }
     //   });
 
-    fetch(`http://localhost:5000/profileUpdate/${user.email}`, {
+    fetch(`https://guarded-chamber-19497.herokuapp.com/profileUpdate/${user.email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

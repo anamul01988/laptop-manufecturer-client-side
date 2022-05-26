@@ -4,7 +4,7 @@ import Loading from '../../Shared/Loading';
 import Users from './Users';
 
 const AllUsers = () => {
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/user',
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://guarded-chamber-19497.herokuapp.com/user',
      {
         method: 'GET',
         headers:{

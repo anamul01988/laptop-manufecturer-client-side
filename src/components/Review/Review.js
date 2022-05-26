@@ -11,7 +11,7 @@ const Review = () => {
   console.log(review);
   // console.log(reviews);
 
-  // const { data: review, isLoading } = useQuery('review', () => fetch('http://localhost:5000/review', {
+  // const { data: review, isLoading } = useQuery('review', () => fetch('https://guarded-chamber-19497.herokuapp.com/review', {
 
   //         method: 'GET',
   //         headers:{
@@ -24,13 +24,13 @@ const Review = () => {
   //     return <Loading></Loading>
   // }
   useEffect(() => {
-    // fetch("http://localhost:5000/review", {
+    // fetch("https://guarded-chamber-19497.herokuapp.com/review", {
     //   method: "GET",
     //   headers: {
     //     authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     //   },
     // })
-    fetch("http://localhost:5000/review")
+    fetch("https://guarded-chamber-19497.herokuapp.com/review")
       .then((res) => res.json())
       .then((data) => setReview(data));
   }, []);

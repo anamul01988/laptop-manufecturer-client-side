@@ -65,9 +65,9 @@ const Navbar = () => {
           </ul>
         </div>
         <NavLink
-          className="font-bold text-2xl text-neutral"
+          className="font-bold md:text-2xl sm:text-base text-neutral"
           to="/ "
-          class="btn btn-ghost normal-case text-xl"
+         
         >
           Laptop-Menufecture
         </NavLink>

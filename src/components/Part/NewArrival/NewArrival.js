@@ -7,7 +7,7 @@ const NewArrival = () => {
   
     useEffect(() => {
     
-      fetch("http://localhost:5000/product")
+      fetch("https://guarded-chamber-19497.herokuapp.com/product")
         .then((res) => res.json())
         .then((data) => setArrival(data));
     }, []);

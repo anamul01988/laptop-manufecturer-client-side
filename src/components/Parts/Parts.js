@@ -6,7 +6,7 @@ const Parts = () => {
   const [parts, setParts] = useState([]);
   const [bookingParts, setBookingParts] = useState(null);
   useEffect(() => {
-    fetch("http://localhost:5000/parts")
+    fetch("https://guarded-chamber-19497.herokuapp.com/parts")
       .then((res) => res.json())
       .then((data) => setParts(data));
   }, []);

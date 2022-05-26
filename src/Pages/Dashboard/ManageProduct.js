@@ -6,7 +6,7 @@ import ProductList from './ProductList';
 
 const ManageProduct = () => {
     const [product_del, setProduct_del] = useState(null)
-    const {data: products, isLoading, refetch} = useQuery('products', () => fetch('http://localhost:5000/product',{
+    const {data: products, isLoading, refetch} = useQuery('products', () => fetch('https://guarded-chamber-19497.herokuapp.com/product',{
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }

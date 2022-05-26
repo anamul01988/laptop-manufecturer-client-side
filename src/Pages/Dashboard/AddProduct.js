@@ -5,7 +5,7 @@ const AddProduct = () => {
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
     console.log(data);
-    const url = `http://localhost:5000/product`;
+    const url = `https://guarded-chamber-19497.herokuapp.com/product`;
     fetch(url, {
       method: "POST",
       headers: {

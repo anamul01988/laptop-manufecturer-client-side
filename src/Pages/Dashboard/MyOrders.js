@@ -11,7 +11,7 @@ const ManageAllProduct = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/order?user=${user.email}`, {
+      fetch(`https://guarded-chamber-19497.herokuapp.com/order?user=${user.email}`, {
         method: "GET",
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`, //aita k send korteci headers theke
@@ -35,7 +35,7 @@ const ManageAllProduct = () => {
   const userOrderDelete = (_id) =>{
     const confirm = window.confirm("fdefdafa")
    if(confirm){
-    fetch(`http://localhost:5000/userOrder/${_id}`,{
+    fetch(`https://guarded-chamber-19497.herokuapp.com/userOrder/${_id}`,{
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -115,7 +115,7 @@ export default ManageAllProduct;
 //   const navigate = useNavigate();
 //   useEffect(() => {
 //     if (user) {
-//       fetch(`http://localhost:5000/order?user=${user.email}`, {
+//       fetch(`https://guarded-chamber-19497.herokuapp.com/order?user=${user.email}`, {
 //         method: "GET",
 //         headers: {
 //           authorization: `Bearer ${localStorage.getItem("accessToken")}`, //aita k send korteci headers theke

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const usePartsDetail = partsId=> {
     const [parts, setParts] = useState({});
     useEffect(()=>{
-        const url = `http://localhost:5000/parts/${partsId}`;
+        const url = `https://guarded-chamber-19497.herokuapp.com/parts/${partsId}`;
         // console.log(url)
         fetch(url)
         .then(res => res.json())

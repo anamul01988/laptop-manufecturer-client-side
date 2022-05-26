@@ -6,24 +6,24 @@
         "short_desc": "We brought a significant numbers of monitor. If you want to change your monitor or repair pls visit us.",
         "min_order_quantity": "100",
         "available": "3000",
-        "price" : "30,333"
+        "price" : "10,333"
     },
     {
         "_id": "2",
-        "name":"Monitor",
-        "img" : "https://i.ibb.co/N7hGF1J/monitor.png",
-        "short_desc": "We brought a significant numbers of monitor. If you want to change your monitor or repair pls visit us.",
+        "name":"SSD",
+        "img" : "https://www.startech.com.bd/image/cache/catalog/ssd/western-digital/green-1tb-sata/green-1tb-sata-02-500x500.jpg",
+        "short_desc": "New ssd are available. So If you want to purchase pls visit our website or showroom.",
         "min_order_quantity": "100",
         "available": "3000",
-        "price" : "30,333"
+        "price" : "1,453"
     },
     {
         "_id": "3",
-        "name":"Monitor",
-        "img" : "https://i.ibb.co/N7hGF1J/monitor.png",
-        "short_desc": "We brought a significant numbers of monitor. If you want to change your monitor or repair pls visit us.",
+        "name":"Mohterboard",
+        "img" : "https://www.xda-developers.com/files/2021/11/ASUS-ROG-Maximus-Z690-Hero-motherboard-main.jpg",
+        "short_desc": "We brought a significant numbers of motherboard. If you want to change motherboard pls visit our website and showroom.",
         "min_order_quantity": "100",
         "available": "3000",
-        "price" : "30,333"
+        "price" : "20,333"
     }
 ]

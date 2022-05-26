@@ -34,7 +34,7 @@ const AddReview = () => {
             img: img,
           };
           // send to your database
-          fetch("http://localhost:5000/review", {
+          fetch("https://guarded-chamber-19497.herokuapp.com/review", {
             method: "POST",
             headers: {
               "content-type": "application/json",
